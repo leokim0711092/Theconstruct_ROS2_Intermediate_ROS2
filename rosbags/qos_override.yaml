@@ -1,0 +1,7 @@
+# qos_override.yaml
+/scan:
+  reliability: reliable
+  history: keep_all
+  deadline:
+    sec: 1
+    nsec: 100
