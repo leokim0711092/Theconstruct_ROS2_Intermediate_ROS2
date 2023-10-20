@@ -33,8 +33,18 @@ ament_target_dependencies(scan_publisher
     "std_msgs"
     rclcpp)
 
+add_executable(lifecycle_manager
+  src/lifecycle_manager.cpp)
+ament_target_dependencies(lifecycle_manager
+  "lifecycle_msgs"
+  "rclcpp_lifecycle"
+  "std_msgs"
+)
+
 install(TARGETS
    scan_publisher
+   lifecycle_manager  # <--- ADD THIS LINE!
+
    DESTINATION lib/${PROJECT_NAME}
  )
 
