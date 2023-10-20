@@ -55,6 +55,9 @@ ament_target_dependencies(executor_example_5_mutualyexclusive_node rclcpp)
 add_executable(executor_example_5_mutualyexclusive_multiple_node src/executor_example_5_mutualyexclusive_multiple.cpp)
 ament_target_dependencies(executor_example_5_mutualyexclusive_multiple_node rclcpp)
 
+add_executable(wait_for_box_bots_arrive_node src/wait_for_box_bots_arrive.cpp)
+ament_target_dependencies(wait_for_box_bots_arrive_node rclcpp std_msgs)
+
 # Install
 install(TARGETS
    executor_example_1_node
@@ -66,6 +69,7 @@ install(TARGETS
    executor_example_5_reentrant_node
    executor_example_5_mutualyexclusive_node
    executor_example_5_mutualyexclusive_multiple_node
+   wait_for_box_bots_arrive_node
 
    DESTINATION lib/${PROJECT_NAME}
  )
