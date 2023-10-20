@@ -41,6 +41,11 @@ ament_target_dependencies(subscriber_lifespan_exe rclcpp)
 add_executable(publisher_lifespan_exe src/publisher_lifespan.cpp)
 ament_target_dependencies(publisher_lifespan_exe rclcpp)
 
+add_executable(publisher_liveliness_exe src/publisher_liveliness.cpp)
+ament_target_dependencies(publisher_liveliness_exe rclcpp)
+add_executable(subscriber_liveliness_exe src/subscriber_liveliness.cpp)
+ament_target_dependencies(subscriber_liveliness_exe rclcpp)
+
 install(TARGETS
    publisher_custom_minimal_qos_exe
    subscriber_custom_minimal_qos_exe
@@ -53,6 +58,9 @@ install(TARGETS
 
    subscriber_lifespan_exe
    publisher_lifespan_exe
+
+   publisher_liveliness_exe
+   subscriber_liveliness_exe
 
    DESTINATION lib/${PROJECT_NAME}
  )
