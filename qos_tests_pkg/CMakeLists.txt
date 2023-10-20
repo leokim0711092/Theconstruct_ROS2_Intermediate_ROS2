@@ -36,6 +36,11 @@ ament_target_dependencies(subscriber_deadline_exe rclcpp)
 add_executable(publisher_deadline_exe src/publisher_deadline.cpp)
 ament_target_dependencies(publisher_deadline_exe rclcpp)
 
+add_executable(subscriber_lifespan_exe src/subscriber_lifespan.cpp)
+ament_target_dependencies(subscriber_lifespan_exe rclcpp)
+add_executable(publisher_lifespan_exe src/publisher_lifespan.cpp)
+ament_target_dependencies(publisher_lifespan_exe rclcpp)
+
 install(TARGETS
    publisher_custom_minimal_qos_exe
    subscriber_custom_minimal_qos_exe
@@ -45,6 +50,10 @@ install(TARGETS
 
    subscriber_deadline_exe
    publisher_deadline_exe
+
+   subscriber_lifespan_exe
+   publisher_lifespan_exe
+
    DESTINATION lib/${PROJECT_NAME}
  )
 
