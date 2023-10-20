@@ -26,9 +26,18 @@ ament_target_dependencies(publisher_custom_minimal_qos_exe rclcpp)
 add_executable(subscriber_custom_minimal_qos_exe src/subscriber_custom_minimal_qos.cpp)
 ament_target_dependencies(subscriber_custom_minimal_qos_exe rclcpp)
 
+add_executable(subscriber_durability_exe src/subscriber_durability.cpp)
+ament_target_dependencies(subscriber_durability_exe rclcpp)
+add_executable(publisher_durability_exe src/publisher_durability.cpp)
+ament_target_dependencies(publisher_durability_exe rclcpp)
+
 install(TARGETS
    publisher_custom_minimal_qos_exe
    subscriber_custom_minimal_qos_exe
+   
+   subscriber_durability_exe
+   publisher_durability_exe
+   
    DESTINATION lib/${PROJECT_NAME}
  )
 
