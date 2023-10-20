@@ -31,13 +31,20 @@ ament_target_dependencies(subscriber_durability_exe rclcpp)
 add_executable(publisher_durability_exe src/publisher_durability.cpp)
 ament_target_dependencies(publisher_durability_exe rclcpp)
 
+add_executable(subscriber_deadline_exe src/subscriber_deadline.cpp)
+ament_target_dependencies(subscriber_deadline_exe rclcpp)
+add_executable(publisher_deadline_exe src/publisher_deadline.cpp)
+ament_target_dependencies(publisher_deadline_exe rclcpp)
+
 install(TARGETS
    publisher_custom_minimal_qos_exe
    subscriber_custom_minimal_qos_exe
    
    subscriber_durability_exe
    publisher_durability_exe
-   
+
+   subscriber_deadline_exe
+   publisher_deadline_exe
    DESTINATION lib/${PROJECT_NAME}
  )
 
