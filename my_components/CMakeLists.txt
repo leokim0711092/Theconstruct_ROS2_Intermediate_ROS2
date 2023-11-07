@@ -12,6 +12,7 @@ find_package(rclcpp_components REQUIRED)
 find_package(composition REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
 
 
 if(BUILD_TESTING)
@@ -55,6 +56,26 @@ target_link_libraries(manual_composition
 ament_target_dependencies(manual_composition
   "rclcpp")
 
+add_library(server_component SHARED src/server_component.cpp)
+target_compile_definitions(server_component PRIVATE "COMPOSITION_BUILDING_DLL")
+ament_target_dependencies(server_component
+  "std_srvs"
+  "rclcpp"
+  "rclcpp_components"
+  "geometry_msgs")
+rclcpp_components_register_nodes(server_component "my_components::Server")
+set(node_plugins "${node_plugins}my_components::Server;$<TARGET_FILE:server_component>\n")
+
+add_library(client_component SHARED src/client_component.cpp)
+target_compile_definitions(client_component PRIVATE "COMPOSITION_BUILDING_DLL")
+ament_target_dependencies(client_component
+  "std_srvs"
+  "rclcpp"
+  "rclcpp_components")
+rclcpp_components_register_nodes(client_component "my_components::Client")
+set(node_plugins "${node_plugins}my_components::Client;$<TARGET_FILE:client_component>\n")
+
+
 install(TARGETS
   manual_composition
 
@@ -63,6 +84,8 @@ install(TARGETS
 install(TARGETS
   moverobot_component
   readodom_component
+  server_component
+  client_component
 
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
