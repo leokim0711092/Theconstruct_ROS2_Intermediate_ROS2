@@ -22,9 +22,9 @@ if(BUILD_TESTING)
 endif()
 
 add_executable(publisher_dds_exe src/publisher_dds.cpp)
-ament_target_dependencies(publisher_dds_exe rclcpp)
+ament_target_dependencies(publisher_dds_exe rclcpp std_msgs)
 add_executable(subscriber_dds_exe src/subscriber_dds.cpp)
-ament_target_dependencies(subscriber_dds_exe rclcpp)
+ament_target_dependencies(subscriber_dds_exe rclcpp std_msgs)
 
 install(TARGETS
    publisher_dds_exe

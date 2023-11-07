@@ -11,6 +11,8 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(composition REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -35,8 +37,20 @@ ament_target_dependencies(moverobot_component
 rclcpp_components_register_nodes(moverobot_component "my_components::MoveRobot")
 set(node_plugins "${node_plugins}my_components::MoveRobot;$<TARGET_FILE:moverobot_component>\n")
 
+add_library(readodom_component SHARED src/readodom_component.cpp)
+target_compile_definitions(readodom_component PRIVATE "COMPOSITION_BUILDING_DLL")
+ament_target_dependencies(readodom_component
+  "rclcpp"
+  "rclcpp_components"
+  "nav_msgs")
+rclcpp_components_register_nodes(readodom_component "my_components::OdomSubscriber")
+set(node_plugins "${node_plugins}my_components::OdomSubscriber;$<TARGET_FILE:readodom_component>\n")
+
+
 install(TARGETS
   moverobot_component
+  readodom_component
+
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin)

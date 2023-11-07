@@ -31,7 +31,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_package()
+
 
 # Build 
 add_executable(executor_example_1_node src/executor_example_1.cpp)
@@ -82,7 +82,4 @@ install(TARGETS
    DESTINATION lib/${PROJECT_NAME}
  )
 
-install(DIRECTORY
-  launch
-  DESTINATION share/${PROJECT_NAME}/
-)
+ament_package()
